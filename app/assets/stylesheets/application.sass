@@ -1,19 +1,19 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
+ * This is a manifest file that'll be compiled into application.css,
+ * which will include all the files listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets,
+ * vendor/assets/stylesheets, or any plugin's vendor/assets/stylesheets
+ * directory can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
+ * You're free to add application-wide styles to this file and they'll appear 
+ * at the bottom of the compiled file so the styles you add here take precedence
+ * over styles defined in any styles defined in the other CSS/SCSS files in this
+ * directory. It is generally better to create a new file per style scope.
  *
  *= require_tree .
  *= require_self
  */
-
 
 body
   font-family: 'Open Sans Condensed', sans-serif
@@ -22,25 +22,63 @@ a
   text-decoration: none
   color: black
 
-.logout_btn
-  position: fixed
-  right: 0
-  padding: 3%
-  margin: 15px
+// --------------------------- Entire page container ---------------------------
+.page-container
+  padding: 30px 30px
 
-.top_row
-  max-height: fill-avaliable
+// ------------------------------- User main page ------------------------------
+.header-row
+  display: flex
+  justify-content: space-between
+  gap: 20px
+  flex-wrap: wrap
+  padding-bottom: 20px
 
-.add_photo_btn
-  position: fixed
-  right: 8%
-  padding: 3%
-  margin: 15px
+.avatar-and-email
+  display: flex
+  flex-wrap: wrap
+  gap: 20px
 
-.email
-  font-size: 7em
+.user-email
+  font-size: 25pt
+  display: flex
+  align-items: center
 
-.user_att
-  position: fixed
-  left: 0
-  margin-left: 15px
+.add-photo-and-logout-buttons
+  display: flex
+  gap: 20px
+  align-items: center
+
+.photos-area-title
+  font-size: 15pt
+
+.horizontail-line
+  margin-bottom: 10px
+  border: 0
+  border-top: 1px solid #eee
+
+.photos
+  height: 600px
+  display: flex
+  flex-wrap: wrap
+  overflow-x: hidden
+
+.photo-area
+  padding: 5px
+  display: flex
+  flex-direction: column
+  gap: 5px
+  background-color: #F0F0F0
+  border: 1pt solid gray
+  border-radius: 5px
+  margin: 5px
+  height: fit-content
+
+.photo
+  height: 200px
+  display: flex
+  justify-content: center
+
+.photo > img
+  max-width: 100%
+  max-height: 100%
