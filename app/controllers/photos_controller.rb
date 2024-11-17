@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  
   def create
     @user = User.find(params[:user_id])
     if params[:photo] == nil
@@ -21,6 +22,7 @@ class PhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:photo).permit(:image)
+    params.require(:photo).permit(:image, :title)
   end
+
 end

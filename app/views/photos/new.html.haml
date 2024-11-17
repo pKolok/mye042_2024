@@ -1,4 +1,29 @@
-%h1 Add a Photo
-= form_for Photo.new(), :url => user_photos_path, :html => {:multipart => true} do |form|
-  = form.file_field :image
-  = form.submit 'Upload'
+-# Header
+.header-row
+  .avatar-and-email
+    .avatar 
+      - if @user.avatar_file_name
+        = image_tag @user.avatar.url(:thumb)
+    .user-email
+      = @user.email
+
+-# Add photo form
+.add-photo-title
+  Add a Photo
+.horizontail-line
+.new-photo-form
+  = form_for Photo.new(), :url => user_photos_path, :html => {:multipart => true} do |form|
+    .form-inputs
+      .form-title
+        .form-title-label
+          = form.label :title
+        .form-title-textbox
+          = form.text_field :title
+      .form-file-chooser
+        = form.file_field :image
+    .upload-and-back-buttons
+      .form-upload-button
+        = form.submit 'Upload', class: ['btn', 'btn-success']
+      .back-button
+        = link_to 'Back', user_path(@user), class: ['btn', 'btn-info']
+

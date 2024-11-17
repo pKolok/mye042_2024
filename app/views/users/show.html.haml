@@ -8,11 +8,11 @@
       = @user.email
   .add-photo-and-logout-buttons
     .add-photo-button
-      = link_to 'Logout', log_out_path,
-        class: ['btn', 'btn-danger', 'logout_btn']
-    .logout-button
       = link_to 'Add Photo', new_user_photo_path(@user),
         class: ['btn', 'btn-success', 'add_photo_btn']
+    .logout-button
+      = link_to 'Logout', log_out_path,
+        class: ['btn', 'btn-danger', 'logout_btn']
 
 -# User Photos    
 .user-photos-area
@@ -25,7 +25,7 @@
         .photo
           = image_tag photo.image.url(:medium)
         .photo-title
-          "Title goes here"
+          = photo.title
         .photo-form
           = form_for @tag do |f|
             = f.hidden_field :photo_id, value: photo.id
