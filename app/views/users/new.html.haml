@@ -1,13 +1,19 @@
 %h1 Sign Up
-= form_for User.new, class: "form-inline" do |f|
-  = f.label :email
-  = f.text_field :email
-  = f.label :password
-  = f.password_field :password
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
-  %br/
-  = f.label :avatar, 'Upload Avatar'
-  = f.file_field :avatar
-  %br/
-  = f.submit "Sign Up"
+.sign-up-form
+  = form_for User.new, class: "form-inline" do |f|
+    .signup-inputs
+      .signup-mail
+        = f.label :email
+        = f.text_field :email
+      .signup-password
+        = f.label :password
+        = f.password_field :password
+      .signup-password-confirmation
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+      .signup-avatar-upload
+        = f.label :avatar, 'Upload Avatar'
+        = f.file_field :avatar
+    .signup-buttons
+      = f.submit "Sign Up", class: ['btn', 'btn-success']
+      = link_to 'Back', root_path, class: ['btn', 'btn-info']

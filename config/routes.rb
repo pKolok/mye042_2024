@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :photos
   end
 
+  root :to => 'home#index'
+
   resources :tags, only: [:create, :destroy]
   get '/log-in' => "sessions#new"
   post '/log-in' => "sessions#create"
