@@ -1,7 +1,13 @@
 %h1 Log In
-= form_tag log_in_path do
-  = label_tag :email
-  = text_field_tag :email
-  = label_tag :password
-  = password_field_tag :password
-  = submit_tag "Log in"
+.login-form
+  = form_tag log_in_path do
+    .login-inputs
+      .login-mail
+        = label_tag :email
+        = text_field_tag :email
+      .login-password
+        = label_tag :password
+        = password_field_tag :password
+    .login-buttons
+      = submit_tag "Log in", class: ['btn', 'btn-success']
+      = link_to 'Back', root_path, class: ['btn', 'btn-info']
