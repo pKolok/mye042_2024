@@ -65,10 +65,10 @@
 -# User Photos    
 .user-photos-area
   .home-photos-area-title
-    = "User Photos"
+    = "Photos"
   .horizontal-line
   .home-photos
-    - @user.photos.each do |photo|
+    - @user_and_followee_photos.each do |photo|
       .home-photo-area
         .home-photo
           = image_tag photo.image.url(:medium)
