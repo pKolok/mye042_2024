@@ -1,0 +1,168 @@
+// -------------------------------- Sign-up page -------------------------------
+.signup-form
+  max-width: 300px
+  margin-top: 30px
+
+.signup-form .new_user
+  display: flex
+  flex-direction: column
+  gap: 30px
+
+.signup-inputs
+  display: flex
+  flex-direction: column
+  gap: 20px
+
+.signup-email
+  display: flex
+  flex-direction: column
+
+.signup-password
+  display: flex
+  flex-direction: column
+
+.signup-password-confirmation
+  display: flex
+  flex-direction: column
+
+.signup-buttons
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  gap: 20px
+
+
+// ------------------------------- User main page ------------------------------
+.header-row
+  display: flex
+  justify-content: space-between
+  gap: 20px
+  flex-wrap: wrap
+  padding-bottom: 20px
+
+.avatar-and-email
+  display: flex
+  flex-wrap: wrap
+  gap: 20px
+
+.avatar 
+  height: 100px
+
+.avatar > img
+  object-fit: cover
+  width: 100px
+  height: 100px
+  border-radius: 50%
+
+.user-email
+  font-size: 25pt
+  display: flex
+  align-items: center
+
+.add-photo-and-logout-buttons
+  display: flex
+  gap: 20px
+  align-items: center
+
+.home-followees-users-area
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  gap: 20px
+  padding-bottom: 20px
+
+.home-followees-area,
+.home-available-users-area
+  flex-grow: 1
+
+.home-followees-title,
+.home.available-users-title
+  font-size: 15pt
+
+.home-followees-container,
+.home-available-users-container
+  height: 200px
+  background-color: #F0F0F0
+  display: flex
+  flex-direction: column
+  gap: 3px
+  padding: 5px  
+  overflow-y: auto
+  border-radius: 5px
+
+.home-followee,
+.home-available-user
+  display: flex
+  flex-direction: row
+  gap: 10px
+  background-color: white
+  border-radius: 20px
+  justify-content: space-between
+
+.home-followee-avatar-and-email,
+.home-available-user-avatar-and-email
+  display: flex
+  flex-direction: row
+  gap: 10px
+
+.home-followee-avatar,
+.home-available-user-avatar
+  height: 35px
+
+.home-followee-avatar > img,
+.home-available-user-avatar > img
+  object-fit: cover
+  width: 35px
+  height: 35px
+  border-radius: 50%
+  
+.home-followee-email,
+.home-available-user-email
+  display: flex
+  align-items: center
+
+.home-followee-unfollow-button,
+.home-available-user-follow-button
+  display: flex
+  align-items: center
+
+.home-followee-unfollow-button .btn.btn-primary,
+.home-available-user-follow-button .btn.btn-primary
+  font-weight: bold
+  border-radius: 50%
+
+.home-followee-unfollow-button:hover,
+.home-available-user-follow-button:hover
+  cursor: pointer
+
+.home-photos-area-title
+  font-size: 15pt
+
+.home-photos
+  height: 450px
+  display: flex
+  flex-wrap: wrap
+  overflow-x: hidden
+
+.home-photo-area
+  padding: 5px
+  display: flex
+  flex-direction: column
+  gap: 5px
+  background-color: #F0F0F0
+  border: 1pt solid gray
+  border-radius: 5px
+  margin: 5px
+  height: fit-content
+
+.home-photo
+  height: 200px
+  display: flex
+  justify-content: center
+
+.home-photo > img
+  max-width: 100%
+  max-height: 100%
+
+.home-photo-title
+  font-size: 12pt

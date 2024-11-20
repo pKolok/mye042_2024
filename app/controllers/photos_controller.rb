@@ -3,11 +3,10 @@ class PhotosController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     if params[:photo] == nil
-
       flash[:alert] = "Please upload a photo"
       redirect_to :back
     else
-    @photo = Photo.create(photo_params)
+      @photo = Photo.create(photo_params)
       @photo.user_id = @user.id
       @photo.save
       flash[:notice] = "Successfully uploaded a photo"

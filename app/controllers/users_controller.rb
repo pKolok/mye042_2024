@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def create
     @user = User.new(user_params)
     @user.valid?
@@ -25,13 +26,17 @@ class UsersController < ApplicationController
     @users = User.all
     @user = User.find(params[:id])
     @tag = Tag.new
+    
+    # Get list of users not being followed
+    excludedIds = @user.followees.pluck(:id)
+    excludedIds.append(@user.id)
+    @users_not_followed = User.where("id NOT IN (?)", excludedIds)
   end
 
   private
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :avatar)
-  end
-
+    end
 
 end

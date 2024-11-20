@@ -4,6 +4,8 @@
     .avatar 
       - if @user.avatar_file_name
         = image_tag @user.avatar.url(:thumb)
+      - else
+        = image_tag "No-avatar.jpeg"
     .user-email
       = @user.email
   .add-photo-and-logout-buttons
@@ -14,19 +16,65 @@
       = link_to 'Logout', log_out_path,
         class: ['btn', 'btn-danger', 'logout_btn']
 
+-# Followees
+.home-followees-users-area
+  -# Followees
+  .home-followees-area
+    .home-followees-title 
+      = "Following"
+    .horizontal-line
+    .home-followees-container
+      - if @user.followees.length == 0
+        Following no-one yet
+      - @user.followees.each do |followee|
+        .home-followee
+          .home-followee-avatar-and-email
+            .home-followee-avatar
+              - if followee.avatar_file_name
+                = image_tag followee.avatar.url(:thumb)
+              - else
+                = image_tag "No-avatar.jpeg"
+            .home-followee-email
+              = followee.email
+          .home-followee-unfollow-button
+            = link_to 'Unfollow', user_unfollow_path(@user, followee),
+              method: :delete, class: ['btn', 'btn-primary'],
+              disabled: false
+  -# Available users
+  .home-available-users-area
+    .home.available-users-title
+      = "Available users"
+    .horizontal-line
+    .home-available-users-container
+      - if @users_not_followed.length == 0
+        No-one left to follow
+      - @users_not_followed.each do |user|
+        .home-available-user
+          .home-available-user-avatar-and-email
+            .home-available-user-avatar
+              - if user.avatar_file_name
+                = image_tag user.avatar.url(:thumb)
+              - else
+                = image_tag "No-avatar.jpeg"
+            .home-available-user-email
+              = user.email
+          .home-available-user-follow-button
+            = link_to 'Follow', user_follow_path(@user, user), method: :post,
+              class: ['btn', 'btn-primary']
+
 -# User Photos    
 .user-photos-area
-  .photos-area-title
+  .home-photos-area-title
     = "User Photos"
-  .horizontail-line
-  .photos
+  .horizontal-line
+  .home-photos
     - @user.photos.each do |photo|
-      .photo-area
-        .photo
+      .home-photo-area
+        .home-photo
           = image_tag photo.image.url(:medium)
-        .photo-title
+        .home-photo-title
           = photo.title
-        .photo-form
+        .home-photo-form
           = form_for @tag do |f|
             = f.hidden_field :photo_id, value: photo.id
             = f.collection_select :user_id, @users, :id, :email
