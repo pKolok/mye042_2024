@@ -11,13 +11,16 @@ Rails.application.routes.draw do
   resources :users do
 
     # /users/id/photos routes
-    resources :photos
+    resources :photos do
+
+      # /users/id/photos/id routes
+      resources :comments
+
+    end
 
     # /users/id/follow & users/id/unfollow routes
-    # member do
-      post 'follow/:user_to_follow', to: 'follows#create', as: 'follow'
-      delete 'unfollow/:user_to_unfollow', to: 'follows#destroy', as: 'unfollow'
-    # end
+    post 'follow/:user_to_follow', to: 'follows#create', as: 'follow'
+    delete 'unfollow/:user_to_unfollow', to: 'follows#destroy', as: 'unfollow'
 
   end
 

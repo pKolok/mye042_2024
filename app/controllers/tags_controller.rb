@@ -9,7 +9,4 @@ class TagsController<ActionController::Base
     redirect_to user_path(session[:user_id])
   end
 
-
-
-
 end

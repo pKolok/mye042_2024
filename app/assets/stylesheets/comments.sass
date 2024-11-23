@@ -1,0 +1,107 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.photo-comments-area
+  display: flex
+  flex-direction: column
+  gap: 20px
+
+.photo-header-title,
+.comments-title
+  font-size: 15pt
+
+.photo > img
+  max-height: 300px
+  max-width: 100%
+
+.comments-area
+  padding-bottom: 20px
+
+.comments-container
+  max-height: 500px
+  min-height: 100px
+  background-color: #F0F0F0
+  display: flex
+  flex-direction: column
+  gap: 10px
+  padding: 15px  
+  overflow-y: auto
+  border-radius: 5px
+
+.comment
+  display: flex
+  flex-direction: row
+  gap: 10px
+  justify-content: flex-start
+  flex-wrap: wrap
+
+.comment-user
+  position: relative
+  display: inline-block
+
+.comment-user-avatar
+  height: 35px
+
+.comment-user-avatar > img
+  object-fit: cover
+  width: 35px
+  height: 35px
+  border-radius: 50%
+
+.comment-user-email
+  visibility: hidden
+  width: auto
+  top: -5px
+  left: 105%
+  background-color: gray
+  color: #fff
+  font-weight: bold
+  text-align: center
+  padding: 5px 10px
+  border-radius: 6px
+  /* Position the tooltip text */
+  position: absolute
+  z-index: 1
+
+.comment-user:hover .comment-user-email
+  visibility: visible
+
+.comment-text
+  display: flex
+  align-items: center
+  flex-grow: 1
+  background-color: white
+  border-radius: 20px
+  padding-left: 20px
+
+.new-comment-form
+  margin-top: 10px
+  padding: 10px
+  border: 2px solid gray
+  border-radius: 5px
+
+.new-comment-text
+  display: flex
+  align-items: center
+  flex-grow: 1
+  background-color: #F0F0F0
+  border-radius: 20px
+  padding-left: 20px
+
+.new-comment-text > input
+  background-color: transparent
+  border: none
+  display: flex
+  flex-grow: 1
+
+.new-comment-text > input:focus-visible
+  outline: none
+
+.comment-send-icon > button
+  border: none
+  border-radius: 50%
+  background-color: white
+
+.comment-send-icon > button > img
+  height: 35px

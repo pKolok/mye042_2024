@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :photos
   has_many :tags
+  has_many :comments
 
   # follower_follows "names" the Follow join table for accessing through the follower association
   has_many :follower_follows, foreign_key: :followee_id, class_name: "Follow" 

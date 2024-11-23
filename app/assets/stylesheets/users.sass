@@ -141,7 +141,7 @@
   font-size: 15pt
 
 .home-photos
-  height: 600px
+  height: calc(100vh - 490px)
   display: flex
   flex-wrap: wrap
   overflow-x: hidden
@@ -168,3 +168,30 @@
 
 .home-photo-title
   font-size: 12pt
+
+.home-photo-bottom-area > form
+  display: flex
+  flex-direction: column
+  gap: 5px
+
+.home-photo-bottom-first-line
+  display: flex
+  justify-content: space-between
+  flex-wrap: wrap
+  gap: 5px
+
+.home-photo-tags-select
+  display: flex
+  justify-content: flex-start
+  flex-wrap: wrap
+  gap: 5px
+
+.home-photo-comment-icon:hover
+  cursor: pointer
+
+.home-photo-comment-icon > a > img
+  height: 25px
+
+.home-photo-tags-list
+  display: flex
+  flex-wrap: wrap

@@ -74,10 +74,16 @@
           = image_tag photo.image.url(:medium)
         .home-photo-title
           = photo.title
-        .home-photo-form
+        .home-photo-bottom-area
           = form_for @tag do |f|
             = f.hidden_field :photo_id, value: photo.id
-            = f.collection_select :user_id, @users, :id, :email
-            = f.submit "Tag User"
-          - photo.tags.each do |tag|
-            = tag.user.email
+            .home-photo-bottom-first-line
+              .home-photo-tags-select
+                = f.collection_select :user_id, @users, :id, :email
+                = f.submit "Tag User"
+              .home-photo-comment-icon
+                = link_to image_tag("comment-icon.jpg"),
+                  user_photo_comments_path(@user, photo)
+            .home-photo-tags-list
+              - photo.tags.each do |tag|
+                = tag.user.email

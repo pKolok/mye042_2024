@@ -1,0 +1,59 @@
+-# Header
+.header-row
+  .avatar-and-email
+    .avatar 
+      - if @user.avatar_file_name
+        = image_tag @user.avatar.url(:thumb)
+      - else
+        = image_tag "No-avatar.jpeg"
+    .user-email
+      = @user.email
+
+.photo-comments-area
+  .photo-area
+    .photo-header-title
+      = "Photo"
+    .horizontal-line
+    .photo
+      = image_tag @photo.image.url
+    .photo-title
+      = @photo.title
+  .comments-area
+    .comments-title
+      = "Comments"
+    .horizontal-line
+    .comments-container
+      - if @photo.comments.length == 0
+        = "Be the first to leave a comment!"
+      - @photo.comments.each do |comment|
+        .comment
+          .comment-user
+            .comment-user-avatar
+              - if comment.user.avatar_file_name
+                = image_tag comment.user.avatar.url(:thumb)
+              - else
+                = image_tag "No-avatar.jpeg"
+            .comment-user-email
+              = comment.user.email
+          .comment-text
+            = comment.comment
+    .new-comment-form
+      = form_for Comment.new(), :url => user_photo_comments_path,
+        :html => {:multipart => true} do |form|
+        .comment
+          .comment-user
+            .comment-user-avatar
+              - if @user.avatar_file_name
+                = image_tag @user.avatar.url(:thumb)
+              - else
+                = image_tag "No-avatar.jpeg"
+            .comment-user-email
+              = @user.email
+          .new-comment-text
+            = form.text_field :comment
+          .comment-send-icon
+            = form.button :submit do
+              = image_tag('send-icon.png', alt: 'Submit')
+
+.back-button
+  = link_to 'Back', user_path(@user), class: ['btn', 'btn-info']
