@@ -26,6 +26,16 @@ class CommentsController < ApplicationController
     @photo = Photo.find(params[:photo_id])
   end
 
+  def destroy
+    @user = User.find(params[:user_id])
+    @photo = Photo.find(params[:photo_id])
+    @comment = Comment.find(params[:id])
+
+    # Find the follow relationship and destroy it
+    @comment.delete()
+
+    redirect_to user_photo_comments_path(@user, @photo)
+  end
 
   private
 

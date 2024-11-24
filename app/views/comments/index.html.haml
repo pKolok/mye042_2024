@@ -37,6 +37,12 @@
               = comment.user.email
           .comment-text
             = comment.comment
+          .comment-delete-icon
+            -if @photo.user == @user || comment.user == @user
+              = link_to user_photo_comment_path(@user, @photo, comment), method: :delete do
+                = image_tag "bin.png", class: "enabled"
+            - else
+              = image_tag("bin.png", class: 'disabled')
     .new-comment-form
       = form_for Comment.new(), :url => user_photo_comments_path,
         :html => {:multipart => true} do |form|

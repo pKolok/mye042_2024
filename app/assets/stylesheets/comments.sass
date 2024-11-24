@@ -21,6 +21,7 @@
 .comments-container
   max-height: 500px
   min-height: 100px
+  max-width: 600px
   background-color: #F0F0F0
   display: flex
   flex-direction: column
@@ -68,14 +69,31 @@
   visibility: visible
 
 .comment-text
+  max-width: 480px
   display: flex
   align-items: center
   flex-grow: 1
   background-color: white
   border-radius: 20px
   padding-left: 20px
+  word-break: break-word
+
+.comment-delete-icon
+  display: flex
+  padding-top: 7px
+
+.comment-delete-icon > img,
+.comment-delete-icon > a > img
+  height: 20px
+
+.comment-delete-icon > img.enabled
+  cursor: pointer
+
+.comment-delete-icon > img.disabled
+  filter: grayscale(1)
 
 .new-comment-form
+  max-width: 600px
   margin-top: 10px
   padding: 10px
   border: 2px solid gray
