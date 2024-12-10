@@ -62,25 +62,52 @@
             = link_to 'Follow', user_follow_path(@user, user), method: :post,
               class: ['btn', 'btn-primary']
 
--# User Photos    
-.user-photos-area
+-# My Photos
+.home-photos-area
   .home-photos-area-title
-    = "Photos"
+    = "My Photos"
   .horizontal-line
-  .home-photos
-    - @user_and_followee_photos.each do |photo|
-      .home-photo-area
-        .home-photo
-          = image_tag photo.image.url(:medium)
+  .home-my-photos
+    .home-slideshow-area
+      .home-photo{ data: { images: @user.photos.map { |photo| { src: photo.image.url(:medium), title: photo.title } }.to_json } }
+        %img
+      .home-photo-title
+      -# TODO:
+      .home-photo-bottom-area
+        = form_for @tag do |f|
+          = f.hidden_field :photo_id, value: @user.photos[0].id
+          .home-photo-bottom-first-line
+            .home-photo-tags-select
+              = f.collection_select :user_id, @users, :id, :email
+              = f.submit "Tag User"
+            .home-photo-coment-icons
+              .home-photo-comment-icon
+                = link_to image_tag("comment-icon.jpg"),
+                  user_photo_comments_path(@user, @user.photos[0])
+              .home-photo-delete-icon
+                = link_to user_photo_path(@user, @user.photos[0]), method: :delete do
+                  = image_tag "bin.png", class: "enabled"
+          .home-photo-tags-list
+            - @user.photos[0].tags.each do |tag|
+              = tag.user.email
+
+-# Followees' Photos   
+.home-photos-area
+  .home-photos-area-title
+    = "Followees Photos"
+  .horizontal-line
+  .home-followees-photos
+    - @user.followees.each do |followee|
+      .home-slideshow-area
+        .home-followee-header
+          = followee.email
+        .home-photo{:id => "followee_#{followee.id}", data: { images: followee.photos.map { |photo| { src: photo.image.url(:medium), title: photo.title } }.to_json } }
+          %img
         .home-photo-title
-          - if photo.title
-            = photo.title
-          - else
-            .home-photo-no-title-placeholder
-              No title given
+        -# TODO:
         .home-photo-bottom-area
           = form_for @tag do |f|
-            = f.hidden_field :photo_id, value: photo.id
+            = f.hidden_field :photo_id, value: followee.photos[0].id
             .home-photo-bottom-first-line
               .home-photo-tags-select
                 = f.collection_select :user_id, @users, :id, :email
@@ -88,13 +115,9 @@
               .home-photo-coment-icons
                 .home-photo-comment-icon
                   = link_to image_tag("comment-icon.jpg"),
-                    user_photo_comments_path(@user, photo)
+                    user_photo_comments_path(@user, followee.photos[0])
                 .home-photo-delete-icon
-                  -if photo.user == @user
-                    = link_to user_photo_path(@user, photo), method: :delete do
-                      = image_tag "bin.png", class: "enabled"
-                  - else
-                    = image_tag("bin.png", class: 'disabled')
+                  = image_tag("bin.png", class: 'disabled')
             .home-photo-tags-list
-              - photo.tags.each do |tag|
+              - followee.photos[0].tags.each do |tag|
                 = tag.user.email

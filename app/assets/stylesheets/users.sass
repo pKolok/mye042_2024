@@ -33,6 +33,7 @@
 
 
 // ------------------------------- User main page ------------------------------
+// ----- Header -----
 .header-row
   display: flex
   justify-content: space-between
@@ -64,13 +65,13 @@
   gap: 20px
   align-items: center
 
+// ----- Following & Available users area -----
 .home-followees-users-area
   display: flex
   flex-direction: row
   justify-content: flex-start
   flex-wrap: wrap
   gap: 20px
-  padding-bottom: 20px
 
 .home-followees-area,
 .home-available-users-area
@@ -137,40 +138,53 @@
 .home-available-user-follow-button:hover
   cursor: pointer
 
+// ----- Photos area -----
 .home-photos-area-title
   font-size: 15pt
+  padding-top: 20px
 
-.home-photos
-  height: calc(100vh - 490px)
+.home-my-photos
+  height: 320px
+  display: flex
+  flex-wrap: wrap
+
+.home-followees-photos
+  height: calc(100vh - 870px)
   display: flex
   flex-wrap: wrap
   overflow-x: hidden
 
-.home-photo-area
+.home-slideshow-area
   padding: 5px
   display: flex
   flex-direction: column
   gap: 5px
   background-color: #F0F0F0
-  border: 1pt solid gray
+  border: 1pt solid lightgray
   border-radius: 5px
   margin: 5px
   height: fit-content
 
+.home-followee-header
+  display: flex
+  justify-content: flex-end
+  font-style: italic
+
 .home-photo
   height: 200px
+  width: 300px
   display: flex
   justify-content: center
+  align-items: flex-end
+  overflow: hidden
 
 .home-photo > img
   max-width: 100%
   max-height: 100%
+  object-fit: contain
 
 .home-photo-title
   font-size: 12pt
-
-.home-photo-no-title-placeholder
-  font-style: italic
 
 .home-photo-bottom-area > form
   display: flex

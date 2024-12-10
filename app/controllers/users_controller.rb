@@ -32,14 +32,6 @@ class UsersController < ApplicationController
     excludedIds.append(@user.id)
     @users_not_followed = User.where("id NOT IN (?)", excludedIds)
 
-    # Get list of combined photos of current user and user followees'
-    photoIds = @user.photos.pluck(:id)
-    @user.followees.each do |followee|
-      photoIds.push(*followee.photos.pluck(:id))
-    end
-    @user_and_followee_photos = Photo.where("id in (?)", photoIds)
-      .order("created_at DESC")
-
   end
 
   private
