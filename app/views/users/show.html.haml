@@ -69,27 +69,31 @@
   .horizontal-line
   .home-my-photos
     .home-slideshow-area
-      .home-photo{ data: { images: @user.photos.map { |photo| { src: photo.image.url(:medium), title: photo.title } }.to_json } }
-        %img
-      .home-photo-title
-      -# TODO:
-      .home-photo-bottom-area
-        = form_for @tag do |f|
-          = f.hidden_field :photo_id, value: @user.photos[0].id
-          .home-photo-bottom-first-line
-            .home-photo-tags-select
-              = f.collection_select :user_id, @users, :id, :email
-              = f.submit "Tag User"
-            .home-photo-coment-icons
-              .home-photo-comment-icon
-                = link_to image_tag("comment-icon.jpg"),
-                  user_photo_comments_path(@user, @user.photos[0])
-              .home-photo-delete-icon
-                = link_to user_photo_path(@user, @user.photos[0]), method: :delete do
-                  = image_tag "bin.png", class: "enabled"
-          .home-photo-tags-list
-            - @user.photos[0].tags.each do |tag|
-              = tag.user.email
+      - if @user.photos.length == 0
+        .home-no-photos
+          Please add some photos 
+      - else
+        .home-photo{ data: { images: @user.photos.map { |photo| { id: photo.id, src: photo.image.url(:medium), title: photo.title } }.to_json } }
+          %img
+        .home-photo-title
+        -# TODO:
+        .home-photo-bottom-area
+          = form_for @tag do |f|
+            = f.hidden_field :photo_id, value: @user.photos[0].id
+            .home-photo-bottom-first-line
+              .home-photo-tags-select
+                = f.collection_select :user_id, @users, :id, :email
+                = f.submit "Tag User"
+              .home-photo-coment-icons
+                .home-photo-comment-icon
+                  = link_to image_tag("comment-icon.jpg"),
+                    user_photo_comments_path(@user, @user.photos[0])
+                .home-photo-delete-icon
+                  = link_to user_photo_path(@user, @user.photos[0]), method: :delete do
+                    = image_tag "bin.png", class: "enabled", title: 'Delete'
+            .home-photo-tags-list
+              - @user.photos[0].tags.each do |tag|
+                = tag.user.email
 
 -# Followees' Photos   
 .home-photos-area
@@ -101,23 +105,30 @@
       .home-slideshow-area
         .home-followee-header
           = followee.email
-        .home-photo{:id => "followee_#{followee.id}", data: { images: followee.photos.map { |photo| { src: photo.image.url(:medium), title: photo.title } }.to_json } }
-          %img
-        .home-photo-title
-        -# TODO:
-        .home-photo-bottom-area
-          = form_for @tag do |f|
-            = f.hidden_field :photo_id, value: followee.photos[0].id
-            .home-photo-bottom-first-line
-              .home-photo-tags-select
-                = f.collection_select :user_id, @users, :id, :email
-                = f.submit "Tag User"
-              .home-photo-coment-icons
-                .home-photo-comment-icon
-                  = link_to image_tag("comment-icon.jpg"),
-                    user_photo_comments_path(@user, followee.photos[0])
-                .home-photo-delete-icon
-                  = image_tag("bin.png", class: 'disabled')
-            .home-photo-tags-list
-              - followee.photos[0].tags.each do |tag|
-                = tag.user.email
+        - if followee.photos.length == 0
+          .home-no-photos
+            Followee has no photos 
+        - else
+          .home-photo{:id => "followee_#{followee.id}", data: { images: followee.photos.map { |photo| { id: photo.id, src: photo.image.url(:medium), title: photo.title } }.to_json } }
+            %img
+          .home-photo-title
+          -# TODO:
+          .home-photo-bottom-area
+            = form_for @tag do |f|
+              = f.hidden_field :photo_id, value: followee.photos[0].id
+              .home-photo-bottom-first-line
+                .home-photo-tags-select
+                  = f.collection_select :user_id, @users, :id, :email
+                  = f.submit "Tag User"
+                .home-photo-coment-icons
+                  .home-photo-comment-icon
+                    = link_to image_tag("comment-icon.jpg"),
+                      user_photo_comments_path(@user, followee.photos[0])
+                  .home-photo-delete-icon
+                    = image_tag("bin.png", class: 'disabled')
+              .home-photo-tags-list
+                - followee.photos[0].tags.each do |tag|
+                  = tag.user.email
+
+-# Comments' Popup
+.home-photo-comments-popup

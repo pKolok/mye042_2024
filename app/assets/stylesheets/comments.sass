@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.comment-x-button-area
+  display: flex
+  justify-content: flex-end
+
+.comment-x-button > button > img
+  max-height: 20px
+
+#closeLink
+  padding: 0px
+  background-color: transparent
+  border-color: transparent
+
 .photo-comments-area
   display: flex
   flex-direction: column
@@ -10,6 +22,9 @@
 .photo-header-title,
 .comments-title
   font-size: 15pt
+
+.photo-header-no-title
+  font-style: italic
 
 .photo > img
   max-height: 300px
@@ -30,27 +45,32 @@
   overflow-y: auto
   border-radius: 5px
 
-.comment
+.comment,
+.new-comment
   display: flex
   flex-direction: row
   gap: 10px
   justify-content: flex-start
   flex-wrap: wrap
 
-.comment-user
+.comment-user,
+.new-comment-user
   position: relative
   display: inline-block
 
-.comment-user-avatar
+.comment-user-avatar,
+.new-comment-user-avatar
   height: 35px
 
-.comment-user-avatar > img
+.comment-user-avatar > img,
+.new-comment-user-avatar > img
   object-fit: cover
   width: 35px
   height: 35px
   border-radius: 50%
 
-.comment-user-email
+.comment-user-email,
+.new-comment-user-email
   visibility: hidden
   width: auto
   top: -5px
@@ -65,9 +85,11 @@
   position: absolute
   z-index: 1
 
+.comment-user:hover .comment-user-email,
 .comment-user:hover .comment-user-email
   visibility: visible
 
+.comment-text,
 .comment-text
   max-width: 480px
   display: flex
@@ -116,10 +138,13 @@
 .new-comment-text > input:focus-visible
   outline: none
 
-.comment-send-icon > button
+.new-comment-send-icon > button
   border: none
   border-radius: 50%
   background-color: white
 
-.comment-send-icon > button > img
+.new-comment-send-icon > button:disabled
+  filter: grayscale(1)
+
+.new-comment-send-icon > button > img
   height: 35px

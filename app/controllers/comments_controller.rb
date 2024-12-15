@@ -10,13 +10,14 @@ class CommentsController < ApplicationController
 
     # Try to save the comment
     if @comment.save
-      # Redirect back to the photo's page or wherever you need
-      redirect_to user_photo_comments_path(@user, @photo),
-        notice: 'Your comment has been posted!'
+      render json: {
+        comment_html: render_to_string(partial: 'comments/comment',
+        formats: [:html], locals: { comment: @comment })
+      }, status: :created
     else
-      # If the comment doesn't save (e.g., due to validation errors), re-render the photo page with errors
-      redirect_to user_photo_comments_path(@user, @photo),
-        alert: 'There was an error posting your comment.'
+      # Respond with errors if validation fails
+      render json: { errors: @comment.errors.full_messages },
+        status: :unprocessable_entity
     end
 
   end
@@ -24,6 +25,8 @@ class CommentsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @photo = Photo.find(params[:photo_id])
+
+    render(:partial => 'photo_comments') if request.xhr?
   end
 
   def destroy
@@ -34,7 +37,9 @@ class CommentsController < ApplicationController
     # Find the follow relationship and destroy it
     @comment.delete()
 
-    redirect_to user_photo_comments_path(@user, @photo)
+    respond_to do |format|
+      format.js { head :no_content }
+    end
   end
 
   private

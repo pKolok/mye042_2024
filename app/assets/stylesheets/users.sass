@@ -144,7 +144,7 @@
   padding-top: 20px
 
 .home-my-photos
-  height: 320px
+  height: fit-content
   display: flex
   flex-wrap: wrap
 
@@ -168,6 +168,15 @@
 .home-followee-header
   display: flex
   justify-content: flex-end
+  font-style: italic
+
+.home-no-photos
+  height: 200px
+  width: 300px
+  display: flex
+  justify-content: center
+  align-items: center
+  overflow: hidden
   font-style: italic
 
 .home-photo
@@ -228,3 +237,13 @@
   max-width: 200px
   max-height: 38px
   overflow-y: scroll
+
+.home-photo-comments-popup
+  display: none
+  position: absolute
+  border: double 5px lightgray
+  background-color: white
+  padding: 20px
+  border-radius: 10px
+  max-width: 600px
+  min-width: 350px

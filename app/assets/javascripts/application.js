@@ -10,7 +10,16 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//
+// These is actual code - not comments!
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+// To test if Turbolinks is working:
+// Navigate between links in the app.
+// Open the Network tab. I should see only an HTML document request when 
+// clicking links, rather than a full page reload with CSS and JavaScript 
+// reloaded.

@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function () { 
+$(document).on('turbolinks:load', function () {
   const $containers = $('.home-photo');
 
   const slideshowIntervals = new Array($containers.length);
@@ -20,11 +20,27 @@ document.addEventListener('turbolinks:load', function () {
     }
 
     // Add event listeners for mouse enter and leave
-    $container.on('mouseenter', function() { 
+    $container.on('mouseenter', function() {
+      if (PhotoCommentsPopup.isOpen) {
+        return;
+      }
+
       startSlideshow(imageData, followeeIndex);
     });
     $container.on('mouseleave', function() {
+      if (PhotoCommentsPopup.isOpen) {
+        return;
+      }
+
       stopSlideshow(followeeIndex);
+    });
+
+    // Add event listener for mouse click
+    $container.on('click', function() {
+      stopSlideshow(followeeIndex);
+
+      PhotoCommentsPopup.getPhotoComments(
+        imageData[currentIndeces[followeeIndex]].id)
     });
   });
 
@@ -34,7 +50,7 @@ document.addEventListener('turbolinks:load', function () {
         currentIndeces[followeeIndex] = (currentIndeces[followeeIndex] + 1) %
           imageData.length;
         updateSlideshow(imageData, followeeIndex);
-      }, 1000); // Change image every 2 seconds
+      }, 2000);
     }
   }
 
@@ -58,5 +74,5 @@ document.addEventListener('turbolinks:load', function () {
       }
     }
   }
-  
+
 });

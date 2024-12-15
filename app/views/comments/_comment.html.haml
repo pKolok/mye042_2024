@@ -1,0 +1,18 @@
+.comment{id: "comment-#{comment.id}"}
+	.comment-user
+		.comment-user-avatar
+			- if comment.user.avatar_file_name
+				= image_tag comment.user.avatar.url(:thumb)
+			- else
+				= image_tag "No-avatar.jpeg"
+		.comment-user-email
+			= comment.user.email
+	.comment-text
+		= comment.comment
+	.comment-delete-icon
+		-if @photo.user == @user || comment.user == @user
+			= link_to user_photo_comment_path(@user, @photo, comment),
+				method: :delete, remote: true do
+				= image_tag "bin.png", class: "enabled", title: 'Delete'
+		- else
+			= image_tag("bin.png", class: 'disabled')

@@ -1,0 +1,45 @@
+.comment-x-button-area
+  .comment-x-button
+    %button#closeLink
+      = image_tag 'close.png', title: 'Close'
+.photo-comments-area
+  .photo-area
+    .photo-header-title
+      - if (@photo.title)
+        = @photo.title
+      - else
+        .photo-header-no-title
+          = "No Title Given"
+    .horizontal-line
+    .photo
+      = image_tag @photo.image.url
+  .comments-area
+    .comments-title
+      = "Comments"
+    .horizontal-line
+    .comments-container
+      - if @photo.comments.length == 0
+        .comments-no-comment-placeholder
+          = "Be the first to leave a comment!"
+      - else 
+        - @photo.comments.each do |comment|
+          = render partial: 'comments/comment', locals: { comment: comment }
+    .new-comment-form
+      = form_for Comment.new(), :url => user_photo_comments_path, remote: true,
+        :html => {:multipart => true} do |form|
+        .new-comment
+          .new-comment-user
+            .new-comment-user-avatar
+              - if @user.avatar_file_name
+                = image_tag @user.avatar.url(:thumb)
+              - else
+                = image_tag "No-avatar.jpeg"
+            .new-comment-user-email
+              = @user.email
+          .new-comment-text
+            = form.text_field :comment, placeholder: "Write a comment...",
+              id: "new-comment-input"
+          .new-comment-send-icon
+            = form.button :submit, disabled: true, id: "comment-submit-button" do
+              = image_tag('send-icon.png', alt: 'Submit', title: 'Post Comment')
+
