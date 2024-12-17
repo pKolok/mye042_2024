@@ -71,9 +71,10 @@
     .home-slideshow-area
       - if @user.photos.length == 0
         .home-no-photos
-          Please add some photos 
+          Please add some photos
       - else
-        .home-photo{ data: { images: @user.photos.map { |photo| { id: photo.id, src: photo.image.url(:medium), title: photo.title } }.to_json } }
+        .home-photo{ :id => "current-user",
+          data: { images: @user.photos.order(created_at: :desc).map { |photo| {id: photo.id, src: photo.image.url(:medium), title: photo.title } }.to_json } }
           %img
         .home-photo-title
         -# TODO:
@@ -109,7 +110,7 @@
           .home-no-photos
             Followee has no photos 
         - else
-          .home-photo{:id => "followee_#{followee.id}", data: { images: followee.photos.map { |photo| { id: photo.id, src: photo.image.url(:medium), title: photo.title } }.to_json } }
+          .home-photo{:id => "followee_#{followee.id}", data: { images: followee.photos.order(created_at: :desc).map { |photo| { id: photo.id, src: photo.image.url(:medium), title: photo.title } }.to_json } }
             %img
           .home-photo-title
           -# TODO:

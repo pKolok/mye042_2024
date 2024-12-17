@@ -23,9 +23,22 @@ class PhotosController < ApplicationController
     @user = User.find(params[:user_id])
     @photo = Photo.find(params[:id])
 
-    @photo.destroy
-
-    redirect_to user_path(@user)
+    if @user.id == @photo.user.id
+      if @photo.destroy
+        respond_to do |format|
+          format.json { head :no_content }
+        end
+      else
+        respond_to do |format|
+          format.json { render json: { error: 'Failed to delete photo' },
+            status: :unprocessable_entity }
+        end
+      end
+      
+    else
+      flash[:alert] = "Cannot delete image of a different user"
+    end
+    
   end
 
   private
